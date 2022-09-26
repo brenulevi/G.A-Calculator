@@ -29,12 +29,30 @@ class Vector3
             return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
         }
 
-        Vector3 operator + (Vector3 const &obj)
+        Vector3 operator + (Vector3 const &v)
         {
             Vector3 res(0, 0, 0);
-            res.x = x + obj.x;
-            res.y = y + obj.y;
-            res.z = z + obj.z;
+            res.x = x + v.x;
+            res.y = y + v.y;
+            res.z = z + v.z;
+            return res;
+        }
+
+        Vector3 operator - (Vector3 const &v)
+        {
+            Vector3 res(0, 0, 0);
+            res.x = x - v.x;
+            res.y = y - v.y;
+            res.z = z - v.z;
+            return res;
+        }
+
+        Vector3 operator * (float const k)
+        {
+            Vector3 res(0, 0, 0);
+            res.x = x * k;
+            res.y = y * k;
+            res.z = z * k;
             return res;
         }
 
@@ -53,11 +71,6 @@ class Vector3
 
 int main()
 {
-    Vector3 v1 = Vector3(1,2,3);
-    Vector3 v2 = Vector3(2,4,6);
-
-    Vector3 v3 = v1 + v2;
-    cout << v3 << "\n";
-
-    return 0;
+    Vector3 v1 = Vector3(1, 2, 3);
+    cout << v1 * 5 << "\n";
 }
