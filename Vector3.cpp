@@ -1,76 +1,90 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
 class Vector3
 {
-    public:
-        int x;
-        int y;
-        int z;
+public:
+  int x;
+  int y;
+  int z;
 
-        double magnitude;
-        
-        Vector3(int new_x, int new_y, int new_z)
-        {
-            x = new_x;
-            y = new_y;
-            z = new_z;
-        }
-         
-        static Vector3 CrossProduct(Vector3 a, Vector3 b)
-        {
-            return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
-        }
+  double magnitude;
 
-        static float ScalarProduct(Vector3 a, Vector3 b)
-        {
-            return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
-        }
+  Vector3(int new_x, int new_y, int new_z)
+  {
+    x = new_x;
+    y = new_y;
+    z = new_z;
 
-        Vector3 operator + (Vector3 const &v)
-        {
-            Vector3 res(0, 0, 0);
-            res.x = x + v.x;
-            res.y = y + v.y;
-            res.z = z + v.z;
-            return res;
-        }
+    magnitude = sqrt((x * x) + (y * y));
+  }
 
-        Vector3 operator - (Vector3 const &v)
-        {
-            Vector3 res(0, 0, 0);
-            res.x = x - v.x;
-            res.y = y - v.y;
-            res.z = z - v.z;
-            return res;
-        }
+  static Vector3 CrossProduct(Vector3 a, Vector3 b)
+  {
+    return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
+  }
 
-        Vector3 operator * (float const k)
-        {
-            Vector3 res(0, 0, 0);
-            res.x = x * k;
-            res.y = y * k;
-            res.z = z * k;
-            return res;
-        }
+  static float ScalarProduct(Vector3 a, Vector3 b)
+  {
+    return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+  }
 
-        friend ostream &operator << (ostream &output, const Vector3 &v)
-        {
-            output << "(" << v.x << ", " << v.y << ", " << v.z << ")";
-            return output;
-        }
+  static float Distance(Vector3 a, Vector3 b)
+  {
+    return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2) + pow(b.z - a.z, 2));
+  }
 
-        friend istream &operator >> (istream &input, Vector3 &v)
-        {
-            input >> v.x >> v.y >> v.z;
-            return input;
-        }
+  Vector3
+  operator+(Vector3 const &v)
+  {
+    Vector3 res(0, 0, 0);
+    res.x = x + v.x;
+    res.y = y + v.y;
+    res.z = z + v.z;
+    return res;
+  }
+
+  Vector3 operator-(Vector3 const &v)
+  {
+    Vector3 res(0, 0, 0);
+    res.x = x - v.x;
+    res.y = y - v.y;
+    res.z = z - v.z;
+    return res;
+  }
+
+  Vector3 operator*(float const k)
+  {
+    Vector3 res(0, 0, 0);
+    res.x = x * k;
+    res.y = y * k;
+    res.z = z * k;
+    return res;
+  }
+
+  bool operator==(Vector3 const &v)
+  {
+    if (x == v.x && y == v.y && z == v.z)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  friend ostream &operator<<(ostream &output, const Vector3 &v)
+  {
+    output << "(" << v.x << ", " << v.y << ", " << v.z << ")";
+    return output;
+  }
+
+  friend istream &operator>>(istream &input, Vector3 &v)
+  {
+    input >> v.x >> v.y >> v.z;
+    return input;
+  }
 };
-
-int main()
-{
-    Vector3 v1 = Vector3(1, 2, 3);
-    cout << v1 * 5 << "\n";
-}
