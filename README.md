@@ -48,4 +48,4 @@ Geometry based calculator for calculating vectors, lines and basic math
 
 ## Observations
 This packet of classes was made for me, Breno Soares, when studying Computer Science, motivated by my curiosity for 3D world and game development.  
-<center><strong>Feel free to use and modificate</strong></center> 
+<p align="center"><strong>Feel free to use and modificate</strong></p>
